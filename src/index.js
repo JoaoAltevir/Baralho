@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const naipeController = require('./controllers/naipe.js');
+const cartaController = require('./controllers/carta.js');
 
 app.use(express.json());
 
@@ -33,3 +34,24 @@ app.listen(port, () => {
 })
 
 //crud carta
+app.post("/cartas", (req, res) => {
+    const carta = req.body;
+    const code = cartaController.store(carta)
+    res.status(code).json();
+})
+app.get("/cartas", (req, res) => {
+    res.json(cartaController.index());
+})
+app.get("/cartas/:id", (req, res) => {
+    const carta = cartaController.show(req.params.id);
+    res.json(carta);
+})
+app.put("/carta/:id", (req, res) => {
+    const carta = req.body;
+    const code = cartaController.update(carta, req.params.id);
+    res.status(code).json();  
+})
+app.delete("/carta/:id", (req, res) => {
+    cartaController.destroy(req.params.id);
+    res.json();
+})
