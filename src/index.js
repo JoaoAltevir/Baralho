@@ -6,7 +6,7 @@ const cartaController = require('./controllers/carta.js');
 
 app.use(express.json());
 
-//crud naipes
+// GERENCIAMENTO DE NAIPES
 app.post("/naipe", (req,res) => {
     const naipe = req.body
     const code = naipeController.store(naipe);
@@ -33,7 +33,7 @@ app.listen(port, () => {
     console.log(`Escutando na porta ${port}`);
 })
 
-//crud carta
+// GERENCIAMENTO DE CARTAS
 app.post("/cartas", (req, res) => {
     const carta = req.body;
     const code = cartaController.store(carta)
