@@ -5,6 +5,7 @@ const naipeController = require('./controllers/naipe.js');
 
 app.use(express.json());
 
+//crud naipes
 app.post("/naipe", (req,res) => {
     const naipe = req.body
     const code = naipeController.store(naipe);
@@ -15,6 +16,7 @@ app.get("/naipe", (req, res) => {
 })
 app.get("/naipe/:id", (req,res) => {
     const naipe = naipeController.show(req.params.id);
+    res.json(naipe);
 });
 app.put("/naipe/:id", (req,res) => {
     const naipe = req.body;
@@ -29,3 +31,5 @@ app.delete("/naipe/:id", (req, res) => {
 app.listen(port, () => {
     console.log(`Escutando na porta ${port}`);
 })
+
+//crud carta
